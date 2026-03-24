@@ -1,0 +1,35 @@
+[project]
+name = "etf-monitoring-agent"
+version = "0.1.0"
+description = "Agentic AI system for ETF monitoring, risk analysis, and comparable instrument evaluation."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn>=0.30.0",
+    "pydantic>=2.8.0",
+    "yfinance>=0.2.54",
+    "pandas>=2.2.0",
+    "langgraph>=0.2.0",
+    "langchain>=0.3.0",
+    "mlflow>=2.16.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.0",
+    "ruff>=0.6.0",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

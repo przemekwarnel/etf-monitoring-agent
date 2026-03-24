@@ -1,0 +1,24 @@
+Metadata-Version: 2.4
+Name: etf-monitoring-agent
+Version: 0.1.0
+Summary: Agentic AI system for ETF monitoring, risk analysis, and comparable instrument evaluation.
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi>=0.115.0
+Requires-Dist: uvicorn>=0.30.0
+Requires-Dist: pydantic>=2.8.0
+Requires-Dist: yfinance>=0.2.54
+Requires-Dist: pandas>=2.2.0
+Requires-Dist: langgraph>=0.2.0
+Requires-Dist: langchain>=0.3.0
+Requires-Dist: mlflow>=2.16.0
+Provides-Extra: dev
+Requires-Dist: pytest>=8.3.0; extra == "dev"
+Requires-Dist: ruff>=0.6.0; extra == "dev"
+
+# ETF Monitoring & Comparable Analysis Agent
+
+Agentic AI project for monitoring ETFs, detecting material changes, classifying long-term risks, and identifying potentially superior comparable instruments.
+
+## Status
+Work in progress.
