@@ -20,6 +20,18 @@ def _extract_info(symbol: str) -> dict:
     return info
 
 
+def is_valid_etf_info(info: dict) -> bool:
+    has_name = info.get("longName") or info.get("shortName")
+
+    has_core_data = any([
+        info.get("totalAssets") is not None,
+        info.get("expenseRatio") is not None,
+        info.get("currency") is not None,
+    ])
+
+    return bool(has_name and has_core_data)
+
+
 def fetch_etf_snapshot(ticker: str) -> ETFSnapshot:
     last_tried_symbol = ticker
 
@@ -28,7 +40,7 @@ def fetch_etf_snapshot(ticker: str) -> ETFSnapshot:
         last_tried_symbol = symbol
         info = _extract_info(symbol)
 
-        if info:
+        if is_valid_etf_info(info):
             return ETFSnapshot(
                 ticker=symbol,
                 fund_name=info.get("longName") or info.get("shortName"),
