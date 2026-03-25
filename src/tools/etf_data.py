@@ -22,6 +22,7 @@ def _extract_info(symbol: str) -> dict:
 
 def is_valid_etf_info(info: dict) -> bool:
     """Determine if the provided info dictionary contains valid ETF data."""
+
     has_name = info.get("longName") or info.get("shortName")
 
     has_core_data = any([
@@ -43,6 +44,7 @@ def fetch_etf_snapshot(ticker: str) -> ETFSnapshot:
     Raises:
     ValueError: If no valid ETF data could be retrieved.
     """
+    
     last_tried_symbol = ticker
 
     for suffix in ETF_SUFFIX_CANDIDATES:
