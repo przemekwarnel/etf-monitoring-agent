@@ -21,6 +21,7 @@ def _extract_info(symbol: str) -> dict:
 
 
 def is_valid_etf_info(info: dict) -> bool:
+    """Determine if the provided info dictionary contains valid ETF data."""
     has_name = info.get("longName") or info.get("shortName")
 
     has_core_data = any([
@@ -33,6 +34,15 @@ def is_valid_etf_info(info: dict) -> bool:
 
 
 def fetch_etf_snapshot(ticker: str) -> ETFSnapshot:
+    """
+    Fetch ETF data from Yahoo Finance and return a validated ETFSnapshot.
+
+    The function attempts multiple ticker suffixes (e.g. .DE, .F) to resolve
+    ETF listings across exchanges.
+
+    Raises:
+    ValueError: If no valid ETF data could be retrieved.
+    """
     last_tried_symbol = ticker
 
     for suffix in ETF_SUFFIX_CANDIDATES:
@@ -52,6 +62,7 @@ def fetch_etf_snapshot(ticker: str) -> ETFSnapshot:
                 top_holdings=[],
                 sector_allocation=[],
                 country_allocation=[],
+                price=info.get("regularMarketPrice"),
             )
 
     raise ValueError(f"Could not fetch ETF data for ticker '{ticker}'. Last tried: {last_tried_symbol}")

@@ -24,3 +24,4 @@ class ETFSnapshot(BaseModel):
     top_holdings: List[Holding] = []
     sector_allocation: List[AllocationItem] = []
     country_allocation: List[AllocationItem] = []
+    price: Optional[float] = None
