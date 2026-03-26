@@ -12,7 +12,8 @@ class AgentState(TypedDict):
     """
     Typed state object passed between LangGraph nodes in the ETF analysis pipeline.
     """
-    
+
+    ticker: str
     current_snapshot: ETFSnapshot
     previous_snapshot: ETFSnapshot
     detected_changes: NotRequired[list[DetectedChange]]
