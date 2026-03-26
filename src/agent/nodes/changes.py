@@ -1,6 +1,8 @@
 from schemas.internal import ETFSnapshot
 from schemas.output import DetectedChange
 
+from agent.state import AgentState
+
 
 def detect_changes(current: ETFSnapshot, previous: ETFSnapshot) -> list[DetectedChange]:
     """
@@ -68,7 +70,7 @@ def detect_changes(current: ETFSnapshot, previous: ETFSnapshot) -> list[Detected
     return changes
 
 
-def detect_changes_node(state: dict) -> dict: 
+def detect_changes_node(state: AgentState) -> AgentState: 
     """
     LangGraph node that detects changes between current and previous ETF snapshots
     and stores them under 'detected_changes' in the agent state.
