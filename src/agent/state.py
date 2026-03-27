@@ -14,6 +14,6 @@ class AgentState(TypedDict):
     """
 
     ticker: str
-    current_snapshot: ETFSnapshot
-    previous_snapshot: ETFSnapshot
+    current_snapshot: NotRequired[ETFSnapshot]
+    previous_snapshot: NotRequired[ETFSnapshot]
     detected_changes: NotRequired[list[DetectedChange]]

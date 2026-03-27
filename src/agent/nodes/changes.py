@@ -70,7 +70,7 @@ def detect_changes(current: ETFSnapshot, previous: ETFSnapshot) -> list[Detected
     return changes
 
 
-def detect_changes_node(state: AgentState) -> AgentState: 
+def detect_changes_node(state: AgentState) -> dict: 
     """
     LangGraph node that detects changes between current and previous ETF snapshots
     and stores them under 'detected_changes' in the agent state.
@@ -79,8 +79,5 @@ def detect_changes_node(state: AgentState) -> AgentState:
     if "current_snapshot" not in state or "previous_snapshot" not in state:
         raise ValueError("State must contain current_snapshot and previous_snapshot")
 
-    current = state["current_snapshot"]
-    previous = state["previous_snapshot"]
-    changes = detect_changes(current, previous)
-    state["detected_changes"] = changes
-    return state
+    changes = detect_changes(state["current_snapshot"], state["previous_snapshot"])
+    return {"detected_changes": changes}
