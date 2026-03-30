@@ -5,7 +5,7 @@ except ImportError:
     from typing_extensions import NotRequired
     
 from schemas.internal import ETFSnapshot
-from schemas.output import DetectedChange
+from schemas.output import DetectedChange, RiskFlag
 
 
 class AgentState(TypedDict):
@@ -17,3 +17,4 @@ class AgentState(TypedDict):
     current_snapshot: NotRequired[ETFSnapshot]
     previous_snapshot: NotRequired[ETFSnapshot]
     detected_changes: NotRequired[list[DetectedChange]]
+    risk_flags: NotRequired[list[RiskFlag]]
