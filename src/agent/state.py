@@ -4,7 +4,7 @@ except ImportError:
     from typing import TypedDict
     from typing_extensions import NotRequired
     
-from schemas.internal import ETFSnapshot
+from schemas.internal import ETFSnapshot, ComparableETF
 from schemas.output import DetectedChange, RiskFlag
 
 
@@ -18,4 +18,5 @@ class AgentState(TypedDict):
     previous_snapshot: NotRequired[ETFSnapshot]
     detected_changes: NotRequired[list[DetectedChange]]
     risk_flags: NotRequired[list[RiskFlag]]
-    comparable_etfs: NotRequired[list]
+    comparable_etfs: NotRequired[list[ComparableETF]]
+    dominant_etf: NotRequired[ComparableETF]
