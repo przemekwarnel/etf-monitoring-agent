@@ -18,3 +18,4 @@ class AgentState(TypedDict):
     previous_snapshot: NotRequired[ETFSnapshot]
     detected_changes: NotRequired[list[DetectedChange]]
     risk_flags: NotRequired[list[RiskFlag]]
+    comparable_etfs: NotRequired[list]

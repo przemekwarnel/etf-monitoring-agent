@@ -25,3 +25,12 @@ class ETFSnapshot(BaseModel):
     sector_allocation: List[AllocationItem] = []
     country_allocation: List[AllocationItem] = []
     price: Optional[float] = None
+
+
+class ComparableETF(BaseModel):
+    ticker: str
+    fund_name: Optional[str] = None
+    expense_ratio: Optional[float] = None
+    aum: Optional[float] = None
+    currency: Optional[str] = None
+    replication_method: Optional[str] = None
