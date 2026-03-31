@@ -11,9 +11,7 @@ def find_dominant_etf(
     """
     
     if current.expense_ratio is None or current.aum is None:
-        raise ValueError(
-            "Current snapshot must have expense ratio and AUM for dominance classification."
-            )
+        return None
     
     best_expense_ratio: float = current.expense_ratio
     dominant_etf: ComparableETF | None = None
