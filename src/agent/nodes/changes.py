@@ -28,8 +28,17 @@ def detect_changes(current: ETFSnapshot, previous: ETFSnapshot) -> list[Detected
                 severity = "medium"
             else:                 
                 severity = "low"
-            description = f"Expense ratio changed from {previous.expense_ratio:.2%} to {current.expense_ratio:.2%}."
-            changes.append(DetectedChange(change_type="expense_ratio", severity=severity, description=description))
+            
+            if expense_ratio_change > 0:
+                change_type = "expense_ratio_increase"
+            else:
+                change_type = "expense_ratio_decrease"
+            
+            description = (
+                f"Expense ratio changed from {previous.expense_ratio:.2%} to {current.expense_ratio:.2%} " 
+                f"({expense_ratio_change:.2%})."
+            )
+            changes.append(DetectedChange(change_type=change_type, severity=severity, description=description))
     
     # AUM
     if (
@@ -45,11 +54,17 @@ def detect_changes(current: ETFSnapshot, previous: ETFSnapshot) -> list[Detected
                 severity = "medium"
             else:
                 severity = "low"
+            
+            if aum_change_pct > 0:
+                change_type = "aum_increase"
+            else:                
+                change_type = "aum_decrease"
+            
             description = (
                 f"AUM changed from {previous.aum:.2f} to {current.aum:.2f} "
                 f"({aum_change_pct:.1%})."
             )
-            changes.append(DetectedChange(change_type="aum", severity=severity, description=description))
+            changes.append(DetectedChange(change_type=change_type, severity=severity, description=description))
     
     # Top holdings
     prev_holdings = {h.name: h.weight for h in previous.top_holdings}

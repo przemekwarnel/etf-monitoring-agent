@@ -10,7 +10,7 @@ def classify_risks(detected_changes: list[DetectedChange]) -> list[RiskFlag]:
     risk_flags = []
 
     for change in detected_changes:
-        if change.change_type == "expense_ratio":
+        if change.change_type == "expense_ratio_increase":
             risk_flags.append(
                 RiskFlag(
                     risk_type="cost_risk",
@@ -19,7 +19,7 @@ def classify_risks(detected_changes: list[DetectedChange]) -> list[RiskFlag]:
                 )
             )
         
-        elif change.change_type == "aum":
+        elif change.change_type == "aum_decrease":
             risk_flags.append(
                 RiskFlag(
                     risk_type="liquidity_risk",
@@ -33,7 +33,7 @@ def classify_risks(detected_changes: list[DetectedChange]) -> list[RiskFlag]:
                 RiskFlag(
                     risk_type="concentration_risk",
                     severity=change.severity,
-                    confidence=0.7,
+                    confidence=0.8,
                 )
             )
 
