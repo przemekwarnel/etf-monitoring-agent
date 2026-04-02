@@ -7,6 +7,7 @@ from agent.nodes.changes import detect_changes_node
 from agent.nodes.risks import classify_risks_node
 from agent.nodes.comparables import find_comparables_node
 from agent.nodes.dominance import dominance_node
+from agent.nodes.synthesize import synthesize_output_node
 
 
 def build_graph():
@@ -14,7 +15,7 @@ def build_graph():
     Build and compile the minimal LangGraph pipeline for ETF analysis.
 
     Current flow:
-    fetch → previous → detect_changes → classify_risks → find_comparables → dominance
+    fetch → previous → detect_changes → classify_risks → find_comparables → dominance → synthesize
     """
 
     builder = StateGraph(AgentState)
@@ -25,6 +26,7 @@ def build_graph():
     builder.add_node("classify_risks", classify_risks_node)
     builder.add_node("find_comparables", find_comparables_node)
     builder.add_node("dominance", dominance_node)
+    builder.add_node("synthesize", synthesize_output_node)
 
     builder.set_entry_point("fetch")
 
@@ -33,5 +35,6 @@ def build_graph():
     builder.add_edge("detect_changes", "classify_risks")
     builder.add_edge("classify_risks", "find_comparables")
     builder.add_edge("find_comparables", "dominance")
+    builder.add_edge("dominance", "synthesize")
 
     return builder.compile()
