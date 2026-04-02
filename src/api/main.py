@@ -4,6 +4,8 @@ from agent.graph import build_graph
 from schemas.output import ETFAnalysisOutput
 
 
+graph = build_graph()
+
 def create_app() -> FastAPI:
     """Create and configure the FastAPI application for the ETF analysis service."""
 
@@ -16,7 +18,6 @@ def create_app() -> FastAPI:
     @app.get("/")
     def root() -> dict[str, str]:
         """Return basic metadata about the API service."""
-
         return {
             "service": "ETF Monitoring & Analysis Agent",
             "version": "0.1.0",
@@ -26,7 +27,6 @@ def create_app() -> FastAPI:
     @app.get("/health")
     def health() -> dict[str, str]:
         """Return a simple health status for monitoring and deployment checks."""
-        
         return {"status": "ok"}
 
     @app.get("/analyze", response_model=ETFAnalysisOutput)
@@ -38,7 +38,6 @@ def create_app() -> FastAPI:
         normalized_ticker = ticker.strip().upper()
 
         try:
-            graph = build_graph()
             result = graph.invoke({"ticker": normalized_ticker})
             return result["final_output"]
         except KeyError as exc:
