@@ -1,13 +1,13 @@
 from langgraph.graph import StateGraph
 
-from agent.state import AgentState
-from agent.nodes.fetch import fetch_current_snapshot_node
-from agent.nodes.history import load_previous_snapshot_node
-from agent.nodes.changes import detect_changes_node
-from agent.nodes.risks import classify_risks_node
-from agent.nodes.comparables import find_comparables_node
-from agent.nodes.dominance import dominance_node
-from agent.nodes.synthesize import synthesize_output_node
+from etf_monitoring_agent.agent.state import AgentState
+from etf_monitoring_agent.agent.nodes.fetch import fetch_current_snapshot_node
+from etf_monitoring_agent.agent.nodes.history import load_previous_snapshot_node
+from etf_monitoring_agent.agent.nodes.changes import detect_changes_node
+from etf_monitoring_agent.agent.nodes.risks import classify_risks_node
+from etf_monitoring_agent.agent.nodes.comparables import find_comparables_node
+from etf_monitoring_agent.agent.nodes.dominance import dominance_node
+from etf_monitoring_agent.agent.nodes.synthesize import synthesize_output_node
 
 
 def build_graph():

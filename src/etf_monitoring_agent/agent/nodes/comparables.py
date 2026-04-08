@@ -1,5 +1,5 @@
-from agent.state import AgentState
-from tools.comparables import find_comparable_etfs
+from etf_monitoring_agent.agent.state import AgentState
+from etf_monitoring_agent.tools.comparables import find_comparable_etfs
 
 
 def find_comparables_node(state: AgentState) -> dict:

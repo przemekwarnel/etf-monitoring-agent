@@ -1,5 +1,5 @@
-from agent.state import AgentState
-from tools.etf_data import fetch_etf_snapshot
+from etf_monitoring_agent.agent.state import AgentState
+from etf_monitoring_agent.tools.etf_data import fetch_etf_snapshot
 
 
 def fetch_current_snapshot_node(state: AgentState) -> dict:

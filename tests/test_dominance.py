@@ -1,5 +1,5 @@
-from schemas.internal import ETFSnapshot, ComparableETF
-from agent.nodes.dominance import find_dominant_etf
+from etf_monitoring_agent.schemas.internal import ETFSnapshot, ComparableETF
+from etf_monitoring_agent.agent.nodes.dominance import find_dominant_etf
 
 
 def test_find_dominant_etf_returns_better_candidate():

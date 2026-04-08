@@ -1,5 +1,5 @@
-from agent.graph import build_graph
-from schemas.internal import ETFSnapshot
+from etf_monitoring_agent.agent.graph import build_graph
+from etf_monitoring_agent.schemas.internal import ETFSnapshot
 
 
 def test_graph_runs_end_to_end_with_mocked_snapshot(monkeypatch):

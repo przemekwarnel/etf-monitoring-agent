@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from agent.state import AgentState
+from etf_monitoring_agent.agent.state import AgentState
 
 
 def load_previous_snapshot_node(state: AgentState) -> dict:

@@ -1,5 +1,5 @@
-from agent.state import AgentState
-from schemas.output import ETFAnalysisOutput, DominantETF
+from etf_monitoring_agent.agent.state import AgentState
+from etf_monitoring_agent.schemas.output import ETFAnalysisOutput, DominantETF
 
 
 def build_status_reason(state: AgentState, status: str) -> str:

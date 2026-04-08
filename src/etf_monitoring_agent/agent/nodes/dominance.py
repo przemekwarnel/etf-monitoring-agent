@@ -1,5 +1,5 @@
-from schemas.internal import ETFSnapshot, ComparableETF
-from agent.state import AgentState
+from etf_monitoring_agent.schemas.internal import ETFSnapshot, ComparableETF
+from etf_monitoring_agent.agent.state import AgentState
 
 
 def find_dominant_etf(

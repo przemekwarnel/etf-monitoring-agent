@@ -4,8 +4,8 @@ except ImportError:
     from typing import TypedDict
     from typing_extensions import NotRequired
     
-from schemas.internal import ETFSnapshot, ComparableETF
-from schemas.output import DetectedChange, RiskFlag, ETFAnalysisOutput
+from etf_monitoring_agent.schemas.internal import ETFSnapshot, ComparableETF
+from etf_monitoring_agent.schemas.output import DetectedChange, RiskFlag, ETFAnalysisOutput
 
 
 class AgentState(TypedDict):

@@ -1,7 +1,7 @@
-from schemas.internal import ETFSnapshot
-from schemas.output import DetectedChange
+from etf_monitoring_agent.schemas.internal import ETFSnapshot
+from etf_monitoring_agent.schemas.output import DetectedChange
 
-from agent.state import AgentState
+from etf_monitoring_agent.agent.state import AgentState
 
 
 def detect_changes(current: ETFSnapshot, previous: ETFSnapshot) -> list[DetectedChange]:

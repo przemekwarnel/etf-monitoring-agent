@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
 
 import api.main
-from schemas.output import ETFAnalysisOutput
+from etf_monitoring_agent.schemas.output import ETFAnalysisOutput
 
 
 client = TestClient(api.main.app)

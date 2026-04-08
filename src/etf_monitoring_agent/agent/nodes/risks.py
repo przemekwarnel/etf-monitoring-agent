@@ -1,5 +1,5 @@
-from schemas.output import DetectedChange, RiskFlag
-from agent.state import AgentState
+from etf_monitoring_agent.schemas.output import DetectedChange, RiskFlag
+from etf_monitoring_agent.agent.state import AgentState
 
 
 def classify_risks(detected_changes: list[DetectedChange]) -> list[RiskFlag]:

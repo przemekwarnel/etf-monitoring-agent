@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException, Query
 
-from agent.graph import build_graph
-from schemas.output import ETFAnalysisOutput
+from etf_monitoring_agent.agent.graph import build_graph
+from etf_monitoring_agent.schemas.output import ETFAnalysisOutput
 
 
 graph = build_graph()

@@ -1,4 +1,4 @@
-from schemas.internal import ComparableETF, ETFSnapshot
+from etf_monitoring_agent.schemas.internal import ComparableETF, ETFSnapshot
 
 
 ETF_EXPOSURE_MAP = {

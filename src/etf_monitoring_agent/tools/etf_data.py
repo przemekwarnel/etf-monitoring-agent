@@ -1,6 +1,6 @@
 import yfinance as yf
 
-from schemas.internal import ETFSnapshot
+from etf_monitoring_agent.schemas.internal import ETFSnapshot
 
 
 ETF_SUFFIX_CANDIDATES = ["", ".DE", ".F", ".AS", ".DU"]
