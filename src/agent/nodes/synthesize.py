@@ -6,15 +6,18 @@ def build_status_reason(state: AgentState, status: str) -> str:
     """Generate a human-readable explanation for the final ETF status."""
 
     if status == "review":
-        status_reason = "A lower-cost alternative with sufficient scale was identified."
-    elif status == "monitor":
-        status_reason = "Potential risk signals were detected and may require attention."
-    elif state.get("detected_changes"):
-        status_reason = "Changes were detected, but they do not currently indicate elevated risk."
-    else:
-        status_reason = "No material changes or risk signals were detected."
+        dominant = state.get("dominant_etf")
+        if dominant is not None:
+            return f"{dominant.ticker} provides a lower-cost alternative with sufficient scale."
+        return "A more cost-efficient and sufficiently large ETF was identified among comparables."
 
-    return status_reason
+    if status == "monitor":
+        return "Potential risk signals were detected and may require attention."
+
+    if status == "stable" and state.get("detected_changes"):
+        return "Changes were detected, but they do not currently indicate elevated risk."
+
+    return "No material changes or risk signals were detected."
 
 
 def synthesize_output(state: AgentState) -> ETFAnalysisOutput:
