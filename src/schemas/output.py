@@ -40,8 +40,10 @@ class DominantETF(BaseModel):
 class ETFAnalysisOutput(BaseModel):
     ticker: str
     status: Literal["stable", "monitor", "review"]
-
+    status_reason: str
+    
     detected_changes: List[DetectedChange]
     risk_flags: List[RiskFlag]
 
     dominant_etf: Optional[DominantETF] = None
+    

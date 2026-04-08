@@ -12,6 +12,7 @@ def build_mock_analysis_output() -> ETFAnalysisOutput:
     return ETFAnalysisOutput(
         ticker="VWCE",
         status="stable",
+        status_reason="No material changes or risk signals were detected.",
         detected_changes=[],
         risk_flags=[],
         dominant_etf=None,
@@ -54,6 +55,7 @@ def test_analyze_returns_structured_output(monkeypatch):
     payload = response.json()
     assert payload["ticker"] == "VWCE"
     assert payload["status"] == "stable"
+    assert payload["status_reason"] == "No material changes or risk signals were detected."
     assert payload["detected_changes"] == []
     assert payload["risk_flags"] == []
     assert payload["dominant_etf"] is None

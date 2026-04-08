@@ -2,6 +2,21 @@ from agent.state import AgentState
 from schemas.output import ETFAnalysisOutput, DominantETF
 
 
+def build_status_reason(state: AgentState, status: str) -> str:
+    """Generate a human-readable explanation for the final ETF status."""
+
+    if status == "review":
+        status_reason = "A lower-cost alternative with sufficient scale was identified."
+    elif status == "monitor":
+        status_reason = "Potential risk signals were detected and may require attention."
+    elif state.get("detected_changes"):
+        status_reason = "Changes were detected, but they do not currently indicate elevated risk."
+    else:
+        status_reason = "No material changes or risk signals were detected."
+
+    return status_reason
+
+
 def synthesize_output(state: AgentState) -> ETFAnalysisOutput:
     """
     Build the final structured ETF analysis output from the current agent state.
@@ -30,6 +45,7 @@ def synthesize_output(state: AgentState) -> ETFAnalysisOutput:
     return ETFAnalysisOutput(
         ticker=state["ticker"],
         status=status,
+        status_reason=build_status_reason(state, status),
         detected_changes=state.get("detected_changes", []),
         risk_flags=state.get("risk_flags", []),
         dominant_etf=output_dominant,
