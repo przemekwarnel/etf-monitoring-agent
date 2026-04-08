@@ -1,5 +1,5 @@
 from agent.state import AgentState
-from schemas.output import ETFAnalysisOutput
+from schemas.output import ETFAnalysisOutput, DominantETF
 
 
 def synthesize_output(state: AgentState) -> ETFAnalysisOutput:
@@ -13,13 +13,26 @@ def synthesize_output(state: AgentState) -> ETFAnalysisOutput:
         status = "monitor"
     else:
         status = "stable"
+    
+    dominant = state.get("dominant_etf")
+    output_dominant = None
+
+    if dominant is not None:
+        output_dominant = DominantETF(
+            ticker=dominant.ticker,
+            fund_name=dominant.fund_name,
+            expense_ratio=dominant.expense_ratio,
+            aum=dominant.aum,
+            currency=dominant.currency,
+            replication_method=dominant.replication_method,
+        )
 
     return ETFAnalysisOutput(
         ticker=state["ticker"],
         status=status,
         detected_changes=state.get("detected_changes", []),
         risk_flags=state.get("risk_flags", []),
-        dominant_etf=state.get("dominant_etf"),
+        dominant_etf=output_dominant,
     )
 
 

@@ -2,8 +2,6 @@ from typing import List, Literal, Optional
 
 from pydantic import BaseModel, Field
 
-from schemas.internal import ComparableETF
-
 
 # --- Risk flags ---
 
@@ -26,6 +24,17 @@ class DetectedChange(BaseModel):
     description: str
 
 
+# --- Dominant ETF ---
+
+class DominantETF(BaseModel):
+    ticker: str
+    fund_name: str | None = None
+    expense_ratio: float | None = None
+    aum: float | None = None
+    currency: str | None = None
+    replication_method: str | None = None
+
+
 # --- Final output ---
 
 class ETFAnalysisOutput(BaseModel):
@@ -35,4 +44,4 @@ class ETFAnalysisOutput(BaseModel):
     detected_changes: List[DetectedChange]
     risk_flags: List[RiskFlag]
 
-    dominant_etf: Optional[ComparableETF] = None
+    dominant_etf: Optional[DominantETF] = None
