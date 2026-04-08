@@ -5,6 +5,15 @@ from schemas.internal import ETFSnapshot
 
 ETF_SUFFIX_CANDIDATES = ["", ".DE", ".F", ".AS", ".DU"]
 
+EXPENSE_RATIO_FALLBACK = {
+    "SPY": 0.009,
+    "IVV": 0.003,
+    "VOO": 0.003,
+    "VWCE": 0.0022,
+    "EEM": 0.0069,
+    "ARKK": 0.0075,
+}
+
 
 def _extract_info(symbol: str) -> dict:
     ticker_obj = yf.Ticker(symbol)
@@ -34,6 +43,19 @@ def is_valid_etf_info(info: dict) -> bool:
     return bool(has_name and has_core_data)
 
 
+def get_expense_ratio(ticker: str) -> float | None:
+    """
+    Retrieve the expense ratio for a given ticker, using fallback values if necessary.
+    """
+
+    info = _extract_info(ticker)
+
+    if is_valid_etf_info(info):
+        return info.get("expenseRatio") or EXPENSE_RATIO_FALLBACK.get(ticker)
+    
+    return EXPENSE_RATIO_FALLBACK.get(ticker)
+    
+
 def fetch_etf_snapshot(ticker: str) -> ETFSnapshot:
     """
     Fetch ETF data from Yahoo Finance and return a validated ETFSnapshot.
@@ -42,7 +64,7 @@ def fetch_etf_snapshot(ticker: str) -> ETFSnapshot:
     ETF listings across exchanges.
 
     Raises:
-    ValueError: If no valid ETF data could be retrieved.
+        ValueError: If no valid ETF data could be retrieved.
     """
     
     last_tried_symbol = ticker
@@ -57,7 +79,7 @@ def fetch_etf_snapshot(ticker: str) -> ETFSnapshot:
                 ticker=symbol,
                 fund_name=info.get("longName") or info.get("shortName"),
                 issuer=None,
-                expense_ratio=info.get("expenseRatio"),
+                expense_ratio=get_expense_ratio(ticker),
                 aum=info.get("totalAssets"),
                 currency=info.get("currency"),
                 replication_method=None,
