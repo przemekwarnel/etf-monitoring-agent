@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
 
 import api.main
-from schemas.output import ComparableAnalysis, ETFAnalysisOutput
+from schemas.output import ETFAnalysisOutput
 
 
 client = TestClient(api.main.app)
@@ -14,10 +14,7 @@ def build_mock_analysis_output() -> ETFAnalysisOutput:
         status="stable",
         detected_changes=[],
         risk_flags=[],
-        comparable_analysis=ComparableAnalysis(
-            found_comparables=True,
-            alternatives=[],
-        ),
+        dominant_etf=None,
     )
 
 
@@ -59,7 +56,6 @@ def test_analyze_returns_structured_output(monkeypatch):
     assert payload["status"] == "stable"
     assert payload["detected_changes"] == []
     assert payload["risk_flags"] == []
-    assert payload["comparable_analysis"]["found_comparables"] is True
-    assert payload["comparable_analysis"]["alternatives"] == []
+    assert payload["dominant_etf"] is None
 
     assert captured_state["state"] == {"ticker": "VWCE"}

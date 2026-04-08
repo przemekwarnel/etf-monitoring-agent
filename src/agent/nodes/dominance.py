@@ -1,6 +1,7 @@
 from schemas.internal import ETFSnapshot, ComparableETF
 from agent.state import AgentState
 
+
 def find_dominant_etf(
     current: ETFSnapshot,
     comparables: list[ComparableETF],
