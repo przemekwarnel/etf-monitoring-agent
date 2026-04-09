@@ -153,9 +153,9 @@ etf-monitoring-agent
 │   └── test_graph.py
 │
 ├── .gitignore
-├── pyproject.toml
 ├── LICENSE
-└── README.md
+├── README.md
+└── pyproject.toml
 ```
 
 ## API
